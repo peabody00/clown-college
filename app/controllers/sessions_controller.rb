@@ -13,8 +13,11 @@ class SessionsController < ApplicationController
       session[:user_id] = student.id
       redirect_to root_path
     else
+      # Flash message not displaying
+      flash.now[:error] = "Please Check Your Username and/or Password" 
       render :new
     end
+
   end
 
   def destroy
@@ -34,7 +37,6 @@ class SessionsController < ApplicationController
       session[:user_id] = student.id
       redirect_to root_path
     else
-      binding.pry
       redirect_to login_path 
     end 
   end 

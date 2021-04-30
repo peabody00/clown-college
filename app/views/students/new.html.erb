@@ -1,13 +1,26 @@
 <h1>This is the create new student page!</h1>
 <% if @student.errors.any? %>
-    <% @student.errors.full_messages.each do |message|%>\
-    <h3><%= message %> </h3>
-  <%end%>
-<%end%>
+  <div id="error_explanation">
+    <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
+    <ul>
+      <% @student.errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
-<%= render partial: "form", locals: {student: @student} %>
+<%= form_with model: @student, local: true do |form| %>
+  First Name: <%= form.text_field :first_name %><br>
+  Last Name: <%= form.text_field :last_name %><br>
+  Username: <%= form.text_field :username %><br>
+  Password: <%= form.password_field :password %><br>
+  <%= form.submit %>
+<% end %>
 
 <h3>Or Log In with Google</h3>
 <%= button_to 'Google', '/auth/google_oauth2' %>
+
+
 
 
