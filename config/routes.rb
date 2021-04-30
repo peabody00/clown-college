@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  post '/logout' => 'sessions#destroy'
+  get '/auth/:provider/callback' => 'sessions#omniauth'
   root 'welcome#index'
   resources :activities
   resources :schedules
@@ -7,8 +11,6 @@ Rails.application.routes.draw do
   resources :students
   resources :sessions
 
-  get '/login' => 'sessions#new'
-  post '/login' => 'sessions#create'
-  post '/logout' => 'sessions#destroy'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
