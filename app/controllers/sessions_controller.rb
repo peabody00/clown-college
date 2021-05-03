@@ -1,17 +1,46 @@
 class SessionsController < ApplicationController
-  skip_before_action :require_login, only:[:new,:create, :omniauth]
+  # skip_before_action :require_login, except:[:destroy]
 
   def new
     if logged_in?
-      redirect_to root_path
+      redirect_to student_path(session[:user_id])
     end
+  end
+  
+  def show
+    if teacher_logged_in?
+      redirect_to teacher_path(session[:user_id])
+    end
+  end
+  
+  def teacher_new # paths are weird with teachers.  App wants to go to sessions#show for teachers.
+    if teacher_logged_in?
+      redirect_to teacher_path(session[:user_id])
+    end
+  end
+
+  def teacher_create
+    teacher = Teacher.find_by(username: params[:username])
+    if teacher && teacher.authenticate(params[:password])
+      session[:user_id] = teacher.id
+      session[:teacher] = true
+      teacher_logged_in?
+      redirect_to teacher_path(teacher)
+    else
+      # Flash message not displaying
+      flash.now[:error] = "Please Check Your Username and/or Password" 
+      render :new
+    end
+
   end
 
   def create
     student = Student.find_by(username: params[:username])
     if student && student.authenticate(params[:password])
       session[:user_id] = student.id
-      redirect_to root_path
+      session[:teacher] = false
+      logged_in?
+      redirect_to student_path(student)
     else
       # Flash message not displaying
       flash.now[:error] = "Please Check Your Username and/or Password" 
@@ -21,8 +50,10 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session.delete :user_id
-    redirect_to login_path
+    # session.delete :user_id
+    # session.delete :teacher
+    session.destroy
+    redirect_to root_path
   end
 
   def omniauth

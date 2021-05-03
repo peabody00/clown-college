@@ -1,5 +1,8 @@
 class StudentsController < ApplicationController
-    skip_before_action :require_login, only:[:new, :create]
+    before_action :require_login, except:[:new, :create]
+
+    def index
+    end 
     
     def new
         if !logged_in?
@@ -17,6 +20,8 @@ class StudentsController < ApplicationController
 
         if @student.save
             session[:user_id] = @student.id
+            session[:teacher] = false
+            logged_in?
             redirect_to student_path(@student)
         else  
             render :new

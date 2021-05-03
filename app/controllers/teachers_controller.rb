@@ -1,8 +1,11 @@
 class TeachersController < ApplicationController
-    skip_before_action :require_login, only:[:new, :create]
+    before_action :require_teacher_login, except:[:new, :create]
+
+    def index
+    end
     
     def new
-        if !logged_in?
+        if !teacher_logged_in?
             @teacher = Teacher.new
         else
             redirect_to root_path
@@ -17,6 +20,8 @@ class TeachersController < ApplicationController
 
         if @teacher.save && @teacher.access_code == "123456789"
             session[:user_id] = @teacher.id
+            session[:teacher] = true
+            teacher_logged_in?
             redirect_to teacher_path(@teacher)
         else  
             render :new
@@ -27,5 +32,5 @@ class TeachersController < ApplicationController
     
     def teacher_params 
         params.require(:teacher).permit(:first_name, :last_name, :username, :password, :password_confirmation, :access_code)
-     end 
+    end 
 end

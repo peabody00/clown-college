@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
+  get '/teacherlogin' => 'sessions#teacher_new'
+  post '/teacherlogin' => 'sessions#teacher_create'
   post '/logout' => 'sessions#destroy'
   get '/auth/:provider/callback' => 'sessions#omniauth'
   root 'welcome#index'

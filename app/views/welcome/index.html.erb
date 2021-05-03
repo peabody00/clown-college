@@ -1,6 +1,12 @@
 <h1>Welcome to Chesapeake Clown College</h1>
 
-<p>Please sign in or sign up below:</p>
-<a href="/students/new">Student Sign Up</a>
-</br><a href="/sessions/new">Student Sign In</a>
-<%= button_to 'Logout', logout_path %>
+<% if logged_in? || teacher_logged_in? %>
+    <p>Welcome</p>
+    <%= button_to 'Logout', logout_path %>
+<% else %>
+    <p>Please sign in or sign up below:</p>
+    <a href="/students/new">Student Sign Up</a><br>
+    <a href="/sessions/new">Student Sign In</a><br>
+    <a href="/teachers/new">Teacher Sign Up</a><br>
+    <a href="/sessions/teacher_new">Teacher Sign In</a><br>
+<% end %>
