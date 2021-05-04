@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   resources :activities
   resources :schedules
   resources :courses
-  resources :teachers
+  resources :teachers do
+    resources :courses
+  end
   resources :students
   resources :sessions
 

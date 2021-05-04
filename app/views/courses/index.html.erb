@@ -1,0 +1,12 @@
+<h1>Course Listing Page</h1>
+<ol>
+<% @courses.each do |t| %>
+    <li><%= t.name %> - <%= t.description %> - <%= t.teacher.first_name %> <%= t.teacher.last_name %><br>
+    <%= link_to "Edit Course", edit_teacher_course_path(t.teacher_id, t.id) %></li>
+<% end %>
+</ol>
+
+
+<%= link_to "Create Course", new_teacher_course_path %><br>
+
+<p><%= link_to "Home", "/" %></p>

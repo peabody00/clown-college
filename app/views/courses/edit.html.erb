@@ -1,0 +1,13 @@
+<h1>Edit Course Page</h1>
+
+<%= form_with model: @course, local: true do |form| %>
+    Course Name: <%= form.text_field :name %><br>
+    Course Description: <%= form.text_area :description %><br>
+    <%= form.submit %>
+    <%= button_to("Delete", :method => "delete", :confirm => 'Are you sure?') %>
+<% end %>
+
+<!-- <%= link_to "Course", courses_path(@course.teacher_id) %><br>  -->
+
+<%= link_to "Home", "/" %>
+
