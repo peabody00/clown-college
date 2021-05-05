@@ -1,3 +1,4 @@
 <h1>Student Show Page!</h1>
 <h3>Welcome <%= current_user.first_name %></h3>
+<%= link_to "Schedule", student_schedules_path(current_user.id) %>
 <%= button_to 'Logout', logout_path %>

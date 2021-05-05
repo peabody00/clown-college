@@ -2,23 +2,33 @@ class CoursesController < ApplicationController
     before_action :require_teacher_login, except:[:index, :show]
     def index
         if params[:teacher_id]
-            @courses = Teacher.find(params[:teacher_id]).courses
+            @teacher = Teacher.find_by(params[:teacher_id])
+            @courses = @teacher.courses
         else
             @courses = Course.all
         end
     end
 
     def new
-        @course = Course.new
+        @teacher = Teacher.find_by(params[:teacher_id])
+        @course = @teacher.courses.build
+
+        # if params[:teacher_id]
+        #     @teacher = Teacher.find_by(params[:teacher_id])
+        #     @course = @teacher.courses.build
+        # else    
+        #     @course = Course.new
+        # end
     end
 
     def show
     end
 
     def create
-        @course = Course.new(course_params)
+        @teacher = Teacher.find_by(params[:teacher_id])
+        @course = @teacher.courses.build(course_params)
         if @course.save
-            redirect_to teacher_path(@teacher.teacher_id)
+            redirect_to teacher_courses_path(@teacher.id)
         else  
             render :new
         end 

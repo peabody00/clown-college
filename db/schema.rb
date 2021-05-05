@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2021_04_30_143712) do
 
   create_table "schedules", force: :cascade do |t|
     t.integer "student_id"
-    t.integer "teacher_id"
+    t.integer "course_id"
     t.string "semester"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2021_04_30_143712) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "uid"
     t.string "provider"
+    t.integer "activity_id"
   end
 
   create_table "teachers", force: :cascade do |t|

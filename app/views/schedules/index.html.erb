@@ -1,0 +1,12 @@
+<h1>This is the Schedules page</h1>
+<% if @schedules == nil %>
+    <h3>No Schedule</h3>
+<% else %>
+    <ol>
+    <% @schedules.each do |t| %>
+        <li><%= t.course.name %> - <%= t.course.description %> - <%= t.course.teacher.first_name %> <%= t.course.teacher.last_name %><br>
+    <% end %>
+    </ol>
+<% end %>
+
+<p><%= link_to "Home", "/" %></p>
