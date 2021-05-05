@@ -8,7 +8,8 @@
     <ol>
     <% @courses.each do |t| %>
         <li><%= t.name %> - <%= t.description %> - <%= t.teacher.first_name %> <%= t.teacher.last_name %><br>
-        <%= link_to "Edit Course", edit_teacher_course_path(t.teacher_id, t.id) %></li>
+        <%= link_to "Edit Course", edit_teacher_course_path(t.teacher_id, t.id) %><br>
+        <%= link_to "Delete Course", teacher_course_path(t.teacher_id, t.id), method: :delete, data: {confirm: "Are you sure?"} %></li>
         <% end %>
     </ol>
     <%= link_to "Create Course", new_teacher_course_path %><br>

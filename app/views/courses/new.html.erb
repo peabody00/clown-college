@@ -10,7 +10,7 @@
   </div>
 <% end %>
 
-<%= form_with model: @course, local: true do |form| %>
+<%= form_with model: [@teacher, @course], local: true do |form| %>
     Course Name: <%= form.text_field :name %><br>
     Course Description: <%= form.text_area :description %><br>
     <% form.hidden_field :teacher_id, value: @teacher.id %> 

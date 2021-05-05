@@ -12,13 +12,6 @@ class CoursesController < ApplicationController
     def new
         @teacher = Teacher.find_by(params[:teacher_id])
         @course = @teacher.courses.build
-
-        # if params[:teacher_id]
-        #     @teacher = Teacher.find_by(params[:teacher_id])
-        #     @course = @teacher.courses.build
-        # else    
-        #     @course = Course.new
-        # end
     end
 
     def show
@@ -40,13 +33,19 @@ class CoursesController < ApplicationController
     end
 
     def update
+        @teacher = Teacher.find_by(params[:teacher_id])
         @course = Course.find_by_id(params[:id])
-        redirect_to teacher_courses_path(@course.teacher_id)
+        if @course.update(course_params)
+            redirect_to teacher_courses_path(@teacher.id)
+        else  
+            render :edit
+        end 
     end
 
     def destroy
         @course = Course.find_by_id(params[:id])
         @course.destroy
+        redirect_to teacher_courses_path(current_teacher.id)
     end
 
     private
