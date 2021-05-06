@@ -2,6 +2,11 @@
 
 <% if logged_in? || teacher_logged_in? %>
     <p>Welcome</p>
+    <% if session[:teacher] %>
+       <%= link_to 'Profile', teacher_path(current_teacher.id) %><br>
+    <% else %>
+        <%= link_to 'Profile', student_path(current_user.id) %><br>
+    <% end %>
     <%= button_to 'Logout', logout_path %>
 <% else %>
     <p>Please sign in or sign up below:</p>

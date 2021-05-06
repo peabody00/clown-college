@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback' => 'sessions#omniauth'
   root 'welcome#index'
   resources :activities
-  resources :schedules
   resources :courses
+  resources :schedules
   resources :teachers do
     resources :courses
   end
