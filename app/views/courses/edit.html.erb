@@ -1,14 +1,11 @@
-<h1>Edit Course Page</h1>
-<% if @course.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
-    <ul>
-      <% @course.errors.full_messages.each do |error| %>
-        <li><%= error %></li>
-      <% end %>
-    </ul>
-  </div>
+<h1>Edit Schedule Page</h1>
+<%= form_with model: [@student, @schedule] do |form| %>
+    <%= form.name %> - <%= form.description %>
+    <% form.hidden_field :student_id, value: @student.id %>
+    <%= form.select :semester, ["Fall", "Spring"] %> 
+    <%= form.submit %>
 <% end %>
+<%= link_to "Home", root_path %>
 
 <%= form_with model: [@teacher, @course], local: true do |form| %>
     Course Name: <%= form.text_field :name %><br>

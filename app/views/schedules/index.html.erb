@@ -5,7 +5,9 @@
 <% else %>
     <ol>
     <% @schedules.each do |t| %>
-        <li><%= t.course.name %> - <%= t.course.description %> - <%= t.course.teacher.first_name %> <%= t.course.teacher.last_name %><br>
+        <li><%= t.course.name %> - <%= t.course.description %> - <% t.semester %> - <%= t.course.teacher.first_name %> <%= t.course.teacher.last_name %><br>
+        <%= button_to "Remove Course", student_schedule_path(t.student_id, t.id), method: :delete, data: {confirm: "Are you sure?"} %>
+        <%= link_to "Edit Course", edit_student_schedule_path(t.student_id, t.id) %><br></li>
     <% end %>
     </ol>
 <% end %>
