@@ -1,4 +1,8 @@
 <h1>Student Show Page!</h1>
-<h3>Welcome <%= current_user.first_name %></h3>
+<h3>Welcome <%= @student.first_name %></h3>
+<p>This is your profile page</p>
+<p>Your Major is: <%= @student.major %><br>
+<%= link_to "Change Major", edit_student_path(@student.id) %></p><br>
+
 <%= link_to "Schedule", student_schedules_path(current_user.id) %>
-<%= button_to 'Logout', logout_path %>
+<%= button_to 'Logout', logout_path %> 

@@ -1,4 +1,7 @@
 <h1>Teacher Show Page!</h1>
-<h3>Welcome <%= current_teacher.first_name %></h3>
+<h3>Welcome <%= @teacher.first_name %></h3>
+<p>This your profile.</p>
+<p>Your department is: <%= @teacher.department %><br>
+<%= link_to "Change Department", edit_teacher_path(@teacher.id) %></p><br>
 <%= link_to "Courses", teacher_courses_path(current_teacher.id) %>
 <%= button_to 'Logout', logout_path %>

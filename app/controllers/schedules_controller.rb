@@ -8,15 +8,15 @@ class SchedulesController < ApplicationController
             @schedules = Schedule.all
         end
     end
-
+    
     def new
         @student = Student.find(params[:student_id])
         @schedule = @student.schedules.build
     end
-
+    
     def show
     end
-
+    
     def create        
         @student = Student.find(params[:student_id])
         @schedule = @student.schedules.build(schedule_params)

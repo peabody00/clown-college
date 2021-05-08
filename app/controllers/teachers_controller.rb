@@ -13,6 +13,17 @@ class TeachersController < ApplicationController
     end
 
     def show
+        @teacher = Teacher.find(params[:id])
+    end
+
+    def edit
+        @teacher = Teacher.find(params[:id])
+    end
+    
+    def update
+        @teacher = Teacher.find(params[:id])
+        @teacher.update(teacher_params)
+        redirect_to teacher_path(@teacher)
     end
 
     def create
@@ -31,6 +42,6 @@ class TeachersController < ApplicationController
     private
     
     def teacher_params 
-        params.require(:teacher).permit(:first_name, :last_name, :username, :password, :password_confirmation, :access_code)
+        params.require(:teacher).permit(:first_name, :last_name, :username, :password, :password_confirmation, :access_code, :department)
     end 
 end

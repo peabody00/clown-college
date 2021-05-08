@@ -13,6 +13,20 @@ class StudentsController < ApplicationController
     end
 
     def show
+        # binding.pry
+        @student = Student.find(params[:id])
+    end
+
+    def edit
+        # @student = Student.find_by(params[:student_id])
+        @student = Student.find(params[:id])
+    end
+    
+    def update
+        # @student = Student.find_by(params[:student_id])
+        @student = Student.find(params[:id])
+        @student.update(student_params)
+        redirect_to student_path(@student)
     end
 
     def create
@@ -31,6 +45,6 @@ class StudentsController < ApplicationController
     private
     
     def student_params 
-        params.require(:student).permit(:first_name, :last_name, :username, :password, :password_confirmation)
+        params.require(:student).permit(:first_name, :last_name, :username, :password, :password_confirmation, :major)
      end 
 end

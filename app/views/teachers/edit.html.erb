@@ -1,0 +1,8 @@
+<h1>Edit Teacher Page</h1>
+<h3>Your current Department is: <%= @teacher.department %>.
+
+<%= form_with model: @teacher do |form| %>
+    <%= form.select(:department, options_for_select(["Mime", "Circus Clown"])) %>
+    <%= form.submit %>
+<% end %>
+<%= link_to "Home", root_path %>

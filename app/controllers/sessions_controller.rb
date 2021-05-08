@@ -66,7 +66,9 @@ class SessionsController < ApplicationController
 
     if student.valid?
       session[:user_id] = student.id
-      redirect_to root_path
+      logged_in?
+      # redirect_to root_path
+      redirect_to student_path(student)
     else
       redirect_to login_path 
     end 
