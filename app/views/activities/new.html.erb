@@ -1,0 +1,19 @@
+<h1>Create New Activities!</h1>
+<% if @activity.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
+    <ul>
+      <% @activity.errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: [@teacher, @activity], local: true do |form| %>
+    Activity Name: <%= form.text_field :name %><br>
+    Activity Description: <%= form.text_area :description %><br>
+    <% form.hidden_field :teacher_id, value: @teacher.id %> 
+    <%= form.submit %>
+<% end %>
+<%= link_to "Home", root_path %>
