@@ -1,0 +1,12 @@
+<h1>Teachers of Chesapeake Clown College</h1>
+
+<% @teachers.each do |t| %>
+    <b><%= t.first_name %> <%= t.last_name %></b> - <i><%= t.department %></i>
+    <% t.courses.each do |c| %>
+        <li><%= c.name %> - <%= c.description %></li>
+    <% end %>
+    <br>
+    <br>
+<% end %>
+
+<p><%= link_to "Home", root_path %></p>

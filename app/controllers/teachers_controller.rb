@@ -1,7 +1,8 @@
 class TeachersController < ApplicationController
-    before_action :require_teacher_login, except:[:new, :create]
+    before_action :require_teacher_login, except:[:index, :new, :create]
 
     def index
+        @teachers = Teacher.teacher_courses
     end
     
     def new

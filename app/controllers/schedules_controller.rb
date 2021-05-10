@@ -28,14 +28,14 @@ class SchedulesController < ApplicationController
         end 
     end
 
-    def edit #Not Working
+    def edit
         @student = Student.find(params[:student_id])
-        @schedule = @student.schedules.build
+        @schedule = Schedule.find_by_id(params[:id])
     end
 
     def update
         @student = Student.find(params[:student_id])
-        @schedule = @student.schedules.build
+        @schedule = Schedule.find_by_id(params[:id])
         if @schedule.update(schedule_params)
             redirect_to student_schedules_path(@student.id)
         else

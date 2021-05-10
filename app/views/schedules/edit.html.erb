@@ -1,6 +1,6 @@
 <h1>Edit Schedule</h1>
+    <%= @schedule.course.name %> - <%= @schedule.course.description %>
 <%= form_with model: [@student, @schedule] do |form| %>
-    <%= form.course.name %> - <%= form.course.description %>
     <% form.hidden_field :student_id, value: @student.id %>
     <%= form.select :semester, ["Fall", "Spring"] %> 
     <%= form.submit %>
