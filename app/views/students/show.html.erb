@@ -4,5 +4,6 @@
 <p>Your Major is: <%= @student.major %><br>
 <%= link_to "Change Major", edit_student_path(@student.id) %></p><br>
 
-<%= link_to "Schedule", student_schedules_path(current_user.id) %>
+<%= link_to "Schedule", student_schedules_path(current_user.id) %><br>
+<%= link_to "Activities", student_students_activities_path(current_user.id) %><br>
 <%= button_to 'Logout', logout_path %> 
