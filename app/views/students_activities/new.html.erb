@@ -1,8 +1,13 @@
 <h2>Add New Activities</h2>
 <br>
-<%= form_with model: [@student, @activity] do |form| %>
+<h3>*This area under construction*</h3>
+<!-- <%= form_with model: @student do |form| %>
     <%= form.collection_select :activity_id, StudentActivity.order(:name),:id,:name %>
     <% form.hidden_field :student_id, value: @student.id %>
-    <%= form.submit %>
+    <%= form.submit %> -->
 <% end %>
+<br>
+<%= link_to "Activities", student_students_activities_path(current_user.id) %><br>
+<br>
+<%= link_to "Profile", student_path(current_user.id) %><br>
 <%= link_to "Home", root_path %>

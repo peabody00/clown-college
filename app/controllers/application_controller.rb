@@ -29,13 +29,8 @@ class ApplicationController < ActionController::Base
         current_teacher
     end
 
-    def current_teacher #THIS IS CAUSING AN ISSUE
+    def current_teacher
         @current_teacher ||= Teacher.find_by(id: session[:user_id])
-        # if session[:teacher] == false
-        #     redirect_to root_path
-        # else
-        #     @current_teacher ||= Teacher.find_by(id: session[:user_id])
-        # end
     end
 
 end
