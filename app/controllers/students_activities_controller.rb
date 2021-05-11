@@ -11,8 +11,7 @@ class StudentsActivitiesController < ApplicationController
     
     def new
         @student = Student.find(params[:student_id])
-        # binding.pry
-        @student_activity = @student.student_activities.build
+        @activity = @student.student_activities.build
     end
     
     def show
