@@ -1,20 +1,33 @@
-<h1>Welcome to Chesapeake Clown College</h1>
+<h2>Welcome to Chesapeake Clown College</h2>
+<h4><i>Vivet, Risu, Amare</i></h4>
+<br>
+<div>Chesapeake Clown College is the premier clown college on east coast.  CCC has a long history
+of clown education and some of our graduates have gone on to be titans in the art of clowning.
+<br>
+<br>
+CCC was founded in 1847 by Erasmus T. Fernsby in Lusby, Maryland.  Since its founding, CCC has dedicated itself to
+training the next generation of clowns.  
+ </div>
+ <br>
+<p>Explore what CCC has to offer:<br>
+<%= link_to "Teachers", teachers_path %><br>
+<%= link_to "Course Catalog", courses_path %><br>
+<%= link_to "School Activities", activities_path %></p>
 
 <p><% if logged_in? || teacher_logged_in? %>
-    <p>Welcome</p>
+    Profile Page<br>
     <% if session[:teacher] %>
        <%= link_to 'Profile', teacher_path(current_teacher.id) %><br>
     <% else %>
         <%= link_to 'Profile', student_path(current_user.id) %><br>
     <% end %>
+    <br>
     <%= button_to 'Logout', logout_path %>
 <% else %>
-    <p>Please sign in or sign up below:</p>
+    <p><strong>Please sign in or sign up below:</strong></p>
     <a href="/students/new">Student Sign Up</a><br>
     <a href="/sessions/new">Student Sign In</a><br>
+    <br>
     <a href="/teachers/new">Teacher Sign Up</a><br>
     <a href="/sessions/teacher_new">Teacher Sign In</a><br>
 <% end %></p>
-
-<%= link_to "Teachers", teachers_path %><br>
-<%= link_to "Course Catalog", courses_path %>

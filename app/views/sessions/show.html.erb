@@ -1,10 +1,13 @@
-<h1>CONFUSED</h1>
-
-<h1>This is the TEACHER login page!</h1>
+<h2>Teacher login</h2>
+<br>
 <%= form_with url: teacherlogin_path, local: true do |f| %>
     Username: <%= f.text_field :username %> <br>
+    <br>
     Password: <%= f.password_field :password %> <br>
-    Access_code: <%= f.password_field :access_code %> <br>
+    <br>
+    Access Code: <%= f.password_field :access_code %> <br>
+    <br>
     <%= f.submit "Log In" %>
 <% end %>
-<%= link_to "Home", "/" %>
+<br>
+<%= link_to "Home", root_path %>

@@ -1,7 +1,0 @@
-<h1>This is the TEACHER login page!</h1>
-<%= form_with url: teacherlogin_path, local: true do |f| %>
-    Username: <%= f.text_field :username %> <br>
-    Password: <%= f.password_field :password %> <br>
-    Access_code: <%= f.password_field :access_code %> <br>
-    <%= f.submit "Log In" %>
-<% end %>

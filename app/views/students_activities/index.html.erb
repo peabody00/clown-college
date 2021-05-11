@@ -1,15 +1,17 @@
-<h1><%= @student.first_name %> <%= @student.last_name %>'s Activities</h1>
+<h2><%= @student.first_name %> <%= @student.last_name %>'s Activities</h2>
 
 <% if @students_activities == nil %>
     <h3>No Activities</h3>
 <% else %>
     <ol>
     <% @students_activities.each do |t| %>
-        <li><%= t.activity.name %> - <%= t.activity.description %> - <%= t.semester %> - <%= t.activity.teacher.first_name %> <%= t.activity.teacher.last_name %><br>
+        <li><strong><%= t.activity.name %></strong> - <%= t.activity.description %> - <%= t.semester %> - <%= t.activity.teacher.first_name %> <%= t.activity.teacher.last_name %><br>
         <%= button_to "Remove Activity", student_students_activity_path(t.student_id, t.id), method: :delete, data: {confirm: "Are you sure?"} %>
     <% end %>
     </ol>
 <% end %>
 
 <p><%= link_to "Add New Activity", new_student_students_activity_path %></p>
+<br>
+<%= link_to "Profile", student_path(current_user.id) %><br>
 <p><%= link_to "Home", root_path %></p>

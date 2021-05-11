@@ -1,8 +1,14 @@
-<h1>Edit Schedule</h1>
+<h2>Edit Schedule</h2>
     <%= @schedule.course.name %> - <%= @schedule.course.description %>
+    <br>
 <%= form_with model: [@student, @schedule] do |form| %>
     <% form.hidden_field :student_id, value: @student.id %>
-    <%= form.select :semester, ["Fall", "Spring"] %> 
+    <%= form.select :semester, ["Fall", "Spring"] %>
+    <br>
     <%= form.submit %>
 <% end %>
+<br>
+<%= link_to "Schedule", student_schedules_path(current_user.id) %><br>
+<br>
+<%= link_to "Profile", student_path(current_user.id) %><br>
 <%= link_to "Home", root_path %>

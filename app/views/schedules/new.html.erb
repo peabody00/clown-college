@@ -1,9 +1,14 @@
-<h1>Add New Courses</h1>
-
+<h2>Add New Course to Schedule</h2>
 <%= form_with model: [@student, @schedule] do |form| %>
     <%= form.collection_select :course_id, Course.order(:name),:id,:name %>
     <% form.hidden_field :student_id, value: @student.id %>
-    <%= form.select :semester, ["Fall", "Spring"] %> 
-    <%= form.submit %>
+    <br>
+    <%= form.select :semester, ["Fall", "Spring"] %>
+    <br>
+    <%= form.submit "Add Course" %>
 <% end %>
+<br>
+<%= link_to "Schedule", student_schedules_path(current_user.id) %><br>
+<br>
+<%= link_to "Profile", student_path(current_user.id) %><br>
 <%= link_to "Home", root_path %>

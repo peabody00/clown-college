@@ -1,8 +1,0 @@
-<h1>This is the Schedules SHOW page</h1>
-<ol>
-<% @schedules.each do |t| %>
-    <li><%= t.course.name %> - <%= t.course.description %> - <%= t.course.teacher.first_name %> <%= t.course.teacher.last_name %><br>
-<% end %>
-</ol>
-
-<p><%= link_to "Home", "/" %></p>

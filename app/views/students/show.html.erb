@@ -1,9 +1,14 @@
-<h1>Student Show Page!</h1>
-<h3>Welcome <%= @student.first_name %></h3>
-<p>This is your profile page</p>
-<p>Your Major is: <%= @student.major %><br>
-<%= link_to "Change Major", edit_student_path(@student.id) %></p><br>
-
+<h2>Student Profile</h2>
+<h3>Welcome <%= @student.first_name %>,</h3>
+<br>
+<p>Your Major is: <strong><%= @student.major %></strong><br>
+<%= link_to "Change Major", edit_student_path(@student.id) %></p>
+<br>
+<p>Your profile page offers access to your schedule and activities.  Please click the links below to view and edit your schedule or activities.</p>
+<br>
 <%= link_to "Schedule", student_schedules_path(current_user.id) %><br>
 <%= link_to "Activities", student_students_activities_path(current_user.id) %><br>
+<br>
+<%= link_to "Home", root_path %><br>
+<br>
 <%= button_to 'Logout', logout_path %> 

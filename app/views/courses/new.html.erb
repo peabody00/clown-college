@@ -1,4 +1,5 @@
-<h1>Create New Courses!</h1>
+<h2>Create New Courses</h2>
+<br>
 <% if @course.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
@@ -12,8 +13,14 @@
 
 <%= form_with model: [@teacher, @course], local: true do |form| %>
     Course Name: <%= form.text_field :name %><br>
-    Course Description: <%= form.text_area :description %><br>
+    <br>
+    Course Description: <%= form.text_area :description, rows: 4, cols: 40 %><br>
     <% form.hidden_field :teacher_id, value: @teacher.id %> 
+    <br>
     <%= form.submit %>
 <% end %>
+<br>
+<%= link_to "Courses", teacher_courses_path(current_teacher.id) %><br>
+<br>
+<%= link_to 'Profile', teacher_path(current_teacher.id) %><br>
 <%= link_to "Home", root_path %>

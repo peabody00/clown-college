@@ -1,8 +1,9 @@
-<h1>Edit Student Page</h1>
-<h3>Your current major is: <%= @student.major %>.
-
+<h2>Change Major</h2>
+<h3>Your current major is: <%= @student.major %>.</h3>
+<br>
 <%= form_with model: @student do |form| %>
     <%= form.select(:major, options_for_select(["Mime", "Circus Clown"])) %>
-    <%= form.submit %>
+    <%= form.submit "Save Major" %>
 <% end %>
+<br>
 <%= link_to "Home", root_path %>

@@ -1,11 +1,13 @@
-<h1>This is the login page!</h1>
+<h2>Student Login</h2>
 <%= form_with url: login_path, local: true do |f| %>
     Username: <%= f.text_field :username %> <br>
+    <br>
     Password: <%= f.password_field :password %> <br>
+    <br>
     <%= f.submit "Log In" %>
 <% end %>
 
-<h3>Or Log In with Google</h3>
+<h3>Log In with Google</h3>
 <%= button_to 'Google', '/auth/google_oauth2' %>
-
-<%= link_to "Home", "/" %>
+<br>
+<%= link_to "Home", root_path %>

@@ -1,8 +1,11 @@
-<h1>Edit Teacher Page</h1>
-<h3>Your current Department is: <%= @teacher.department %>.
-
+<h2>Change Department</h2>
+<h3>Your current Department is: <strong><%= @teacher.department %></strong></h3>
+<br>
 <%= form_with model: @teacher do |form| %>
     <%= form.select(:department, options_for_select(["Mime", "Circus Clown"])) %>
-    <%= form.submit %>
+    <br>
+    <%= form.submit "Change Department" %>
 <% end %>
+<br>
+<%= link_to 'Profile', teacher_path(current_teacher.id) %><br>
 <%= link_to "Home", root_path %>

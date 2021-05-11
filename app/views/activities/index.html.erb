@@ -1,16 +1,15 @@
 <% if @teacher %>
-    <h1><%= @teacher.first_name %> <%= @teacher.last_name %>'s Activities</h1>
+    <h2><%= @teacher.first_name %> <%= @teacher.last_name %>'s Activities</h2>
 <% else %>
-    <h1>Activity Listing Page</h1>
+    <h2>Activity Listing</h2>
 <% end %>
 
 <% if @teacher %>
     <ol>
     <% @activities.each do |t| %>
-        <li><%= t.name %> - <%= t.description %> - <%= t.teacher.first_name %> <%= t.teacher.last_name %><br>
+        <li><strong><%= t.name %></strong> - <%= t.description %> - <i><%= t.teacher.first_name %> <%= t.teacher.last_name %></i><br>
         <%= link_to "Edit Activity", edit_teacher_activity_path(t.teacher_id, t.id) %><br>
-        <%= link_to "Delete Activity", teacher_activity_path(t.teacher_id, t.id), method: :delete, data: {confirm: "Are you sure?"} %></li>
-        <br>
+        <%= button_to "Delete Activity", teacher_activity_path(t.teacher_id, t.id), method: :delete, data: {confirm: "Are you sure?"} %></li>
         <br>
         <% end %>
     </ol>
@@ -22,5 +21,9 @@
     <% end %>
     </ol>
 <% end %>
-
-<p><%= link_to "Home", "/" %></p>
+<br>
+<% if @teacher %>
+<br>
+<%= link_to 'Profile', teacher_path(current_teacher.id) %><br>
+<% end %>
+<p><%= link_to "Home", root_path %></p>

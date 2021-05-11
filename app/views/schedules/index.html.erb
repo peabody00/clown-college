@@ -1,16 +1,19 @@
-<h1><%= @student.first_name %> <%= @student.last_name %>'s Schedule</h1>
-
+<h2><%= @student.first_name %> <%= @student.last_name %>'s Schedule</h2>
+<br>
 <% if @schedules == nil %>
     <h3>No Schedule</h3>
 <% else %>
     <ol>
     <% @schedules.each do |t| %>
-        <li><%= t.course.name %> - <%= t.course.description %> - <%= t.semester %> - <%= t.course.teacher.first_name %> <%= t.course.teacher.last_name %><br>
+        <li><strong><%= t.course.name %></strong> - <%= t.course.description %> - <b><%= t.semester %></b> - <i><%= t.course.teacher.first_name %> <%= t.course.teacher.last_name %></i><br>
         <%= button_to "Remove Course", student_schedule_path(t.student_id, t.id), method: :delete, data: {confirm: "Are you sure?"} %>
         <%= link_to "Edit Course", edit_student_schedule_path(t.student_id, t.id) %><br></li>
+        <br>
     <% end %>
     </ol>
+    <br>
 <% end %>
-
 <p><%= link_to "Add New Course", new_student_schedule_path %></p>
+<br>
+<%= link_to "Profile", student_path(current_user.id) %><br>
 <p><%= link_to "Home", root_path %></p>

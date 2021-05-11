@@ -1,4 +1,4 @@
-<h1>This is the create new teacher page!</h1>
+<h2>New Teacher Sign Up</h2>
 <% if @teacher.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@teacher.errors.count, "error") %> prohibited this teacher from being saved:</h2>
@@ -9,13 +9,19 @@
     </ul>
   </div>
 <% end %>
-
+<br>
 <%= form_with model: @teacher, local: true do |form| %>
     First Name: <%= form.text_field :first_name %><br>
+    <br>
     Last Name: <%= form.text_field :last_name %><br>
+    <br>
     Username: <%= form.text_field :username %><br>
+    <br>
     Password: <%= form.password_field :password %><br>
-    Access Code: <%= form.password_field :access_code %><br>
+    <br>
+    Access Code: <%= form.password_field :access_code %> <small>(Code provided by Administration)</small><br>
+    <br>
     <%= form.submit %>
 <% end %>
-<%= link_to "Home", "/" %>
+<br>
+<%= link_to "Home", root_path %>
