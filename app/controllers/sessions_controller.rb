@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
     else
       # Flash message not displaying
       flash.now[:error] = "Please Check Your Username and/or Password" 
-      render :new
+      render :show
     end
 
   end

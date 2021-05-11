@@ -17,7 +17,7 @@
 <% else %>
     <ol>
     <% @courses.each do |t| %>
-    <li><%= t.name %> - <%= t.description %> - <%= t.teacher.first_name %> <%= t.teacher.last_name %><br>
+    <li><strong><%= t.name %></strong> - <%= t.description %> - <i><%= t.teacher.first_name %> <%= t.teacher.last_name %></i><br>
     <% end %>
     </ol>
 <% end %>

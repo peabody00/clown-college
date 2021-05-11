@@ -20,7 +20,7 @@ To use the OmniAuth feature you will need to have a Google Developer account wit
 
 ## Usage
 
-This is a simple website that mimics a college website.  Students can log in and create their class schedules and sign up for activities (this feature is still under construction).  Teachers can log in and create new courses and activities.
+This is a simple website that mimics a college website.  Students can log in and create their class schedules and sign up for activities (this feature is still under construction).  Teachers can log in and create new courses and activities.  Teachers have to enter an addiotnal access code to create an account or to log in.  The feature is a simple implementation but is intended to prevent students from creating teacher accounts.  Access code is hard coded as `123456789`.
 
 ## License
 
