@@ -10,7 +10,7 @@ After cloning the repository run `bundle install` to install any required gems.
 
 Run `rails db:migrate` to create the tables and database.
 
-If you want to use some starter data, run `rails db:seed`.
+If you want to use some starter data, run `rails db:seed`.  Please see `seed.rb` file for account passwords.
 
 Run `rails s` from the prompt to start the local webserver.
 
