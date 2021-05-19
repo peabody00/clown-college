@@ -2,7 +2,7 @@ class ActivitiesController < ApplicationController
     before_action :require_teacher_login, except:[:index, :show]
     def index
         if params[:teacher_id]
-            @teacher = Teacher.find(params[:teacher_id])
+            @teacher = find_teacher
             @activities = @teacher.activities
         else
             @activities = Activity.all
@@ -10,7 +10,7 @@ class ActivitiesController < ApplicationController
     end
 
     def new
-        @teacher = Teacher.find(params[:teacher_id])
+        @teacher = find_teacher
         @activity = @teacher.activities.build
     end
 
@@ -18,7 +18,7 @@ class ActivitiesController < ApplicationController
     end
 
     def create
-        @teacher = Teacher.find(params[:teacher_id])
+        @teacher = find_teacher
         @activity = @teacher.activities.build(activity_params)
         if @activity.save
             redirect_to teacher_activities_path(@teacher.id)
@@ -29,13 +29,13 @@ class ActivitiesController < ApplicationController
     end
 
     def edit
-        @teacher = Teacher.find(params[:teacher_id])
-        @activity = Activity.find_by_id(params[:id])
+        @teacher = find_teacher
+        @activity = find_activity
     end
 
     def update
-        @teacher = Teacher.find(params[:teacher_id])
-        @activity = Activity.find_by_id(params[:id])
+        @teacher = find_teacher
+        @activity = find_activity
         if @activity.update(activity_params)
             redirect_to teacher_activities_path(@teacher.id)
         else  
@@ -44,7 +44,7 @@ class ActivitiesController < ApplicationController
     end
 
     def destroy
-        @activity = Activity.find_by_id(params[:id])
+        @activity = find_activity
         @activity.destroy
         redirect_to teacher_activities_path(current_teacher.id)
     end
@@ -53,6 +53,5 @@ class ActivitiesController < ApplicationController
 
     def activity_params 
         params.require(:activity).permit(:name, :description, :teacher_id)
-    end 
-    
+    end
 end

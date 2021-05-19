@@ -13,15 +13,15 @@ class StudentsController < ApplicationController
     end
 
     def show
-        @student = Student.find(params[:id])
+        @student = find_student
     end
 
     def edit
-        @student = Student.find(params[:id])
+        @student = find_student
     end
     
     def update
-        @student = Student.find(params[:id])
+        @student = find_student
         @student.update(student_params)
         redirect_to student_path(@student)
     end
@@ -43,5 +43,5 @@ class StudentsController < ApplicationController
     
     def student_params 
         params.require(:student).permit(:first_name, :last_name, :username, :password, :password_confirmation, :major)
-     end 
+    end 
 end

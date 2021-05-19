@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
     before_action :require_teacher_login, except:[:index, :show]
     def index
         if params[:teacher_id]
-            @teacher = Teacher.find(params[:teacher_id])
+            @teacher = find_teacher
             @courses = @teacher.courses
         else
             @courses = Course.all
@@ -10,7 +10,7 @@ class CoursesController < ApplicationController
     end
 
     def new
-        @teacher = Teacher.find(params[:teacher_id])
+        @teacher = find_teacher
         @course = @teacher.courses.build
     end
 
@@ -18,7 +18,7 @@ class CoursesController < ApplicationController
     end
 
     def create
-        @teacher = Teacher.find(params[:teacher_id])
+        @teacher = find_teacher
         @course = @teacher.courses.build(course_params)
         if @course.save
             redirect_to teacher_courses_path(@teacher.id)
@@ -29,13 +29,13 @@ class CoursesController < ApplicationController
     end
 
     def edit
-        @teacher = Teacher.find(params[:teacher_id])
-        @course = Course.find_by_id(params[:id])
+        @teacher = find_teacher
+        @course = find_course
     end
 
     def update
-        @teacher = Teacher.find(params[:teacher_id])
-        @course = Course.find_by_id(params[:id])
+        @teacher = find_teacher
+        @course = find_course
         if @course.update(course_params)
             redirect_to teacher_courses_path(@teacher.id)
         else  
@@ -44,7 +44,7 @@ class CoursesController < ApplicationController
     end
 
     def destroy
-        @course = Course.find_by_id(params[:id])
+        @course = find_course
         @course.destroy
         redirect_to teacher_courses_path(current_teacher.id)
     end

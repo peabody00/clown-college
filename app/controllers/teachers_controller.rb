@@ -14,15 +14,15 @@ class TeachersController < ApplicationController
     end
 
     def show
-        @teacher = Teacher.find(params[:id])
+        @teacher = find_teacher
     end
 
     def edit
-        @teacher = Teacher.find(params[:id])
+        @teacher = find_teacher
     end
     
     def update
-        @teacher = Teacher.find(params[:id])
+        @teacher = find_teacher
         @teacher.update(teacher_params)
         redirect_to teacher_path(@teacher)
     end

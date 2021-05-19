@@ -1,4 +1,9 @@
 <h2>Teacher login</h2>
+<% if flash %>
+    <% flash.each do |type, message| %>
+        <%= message %><br>
+    <% end %>
+<% end %>
 <br>
 <%= form_with url: teacherlogin_path, local: true do |f| %>
     Username: <%= f.text_field :username %> <br>

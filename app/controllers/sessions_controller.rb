@@ -27,7 +27,6 @@ class SessionsController < ApplicationController
       teacher_logged_in?
       redirect_to teacher_path(teacher)
     else
-      # Flash message not displaying
       flash.now[:error] = "Please Check Your Username and/or Password" 
       render :show
     end
@@ -42,7 +41,6 @@ class SessionsController < ApplicationController
       logged_in?
       redirect_to student_path(student)
     else
-      # Flash message not displaying
       flash.now[:error] = "Please Check Your Username and/or Password" 
       render :new
     end
@@ -50,8 +48,6 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    # session.delete :user_id
-    # session.delete :teacher
     session.destroy
     redirect_to root_path
   end
@@ -67,7 +63,6 @@ class SessionsController < ApplicationController
     if student.valid?
       session[:user_id] = student.id
       logged_in?
-      # redirect_to root_path
       redirect_to student_path(student)
     else
       redirect_to login_path 

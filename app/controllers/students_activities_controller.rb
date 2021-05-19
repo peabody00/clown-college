@@ -2,7 +2,7 @@ class StudentsActivitiesController < ApplicationController
     before_action :require_login
     def index
         if params[:student_id]
-            @student = Student.find(params[:student_id])
+            @student = find_student
             @students_activities = @student.student_activities
         else
             @students_activities = StudentActivity.all
@@ -10,7 +10,7 @@ class StudentsActivitiesController < ApplicationController
     end
     
     def new
-        @student = Student.find(params[:student_id])
+        @student = find_student
         @activity = @student.student_activities.build
     end
     
@@ -18,10 +18,10 @@ class StudentsActivitiesController < ApplicationController
     end
     
     def create        
-        @student = Student.find(params[:student_id])
+        @student = find_student
         @student_activity = @student.students_activities.build(student_activity_params)
         @students_activities = StudentActivity.all
-         if @student_activity.save
+        if @student_activity.save
             redirect_to student_students_activities_path(@student.id)
         else  
             render :new
@@ -29,13 +29,13 @@ class StudentsActivitiesController < ApplicationController
     end
 
     def edit
-        @student = Student.find(params[:student_id])
-        @student_activity = StudentActivity.find_by_id(params[:id])
+        @student = find_student
+        @student_activity = find_student_activity
     end
 
     def update
-        @student = Student.find(params[:student_id])
-        @student_activity = StudentActivity.find_by_id(params[:id])
+        @student = find_student
+        @student_activity = find_student_activity
         if @student_activity.update(student_activity_params)
             redirect_to student_students_activities_path(@student.id)
         else
@@ -44,8 +44,8 @@ class StudentsActivitiesController < ApplicationController
     end
 
     def destroy
-        @student = Student.find(params[:student_id])
-        @student_activity = StudentActivity.find_by_id(params[:id])
+        @student = find_student
+        @student_activity = find_student_activity
         @student_activity.destroy
         redirect_to student_students_activities_path(@student.id)
     end

@@ -2,7 +2,7 @@ class SchedulesController < ApplicationController
     before_action :require_login
     def index
         if params[:student_id]
-            @student = Student.find(params[:student_id])
+            @student = find_student
             @schedules = @student.schedules
         else
             @schedules = Schedule.all
@@ -10,7 +10,7 @@ class SchedulesController < ApplicationController
     end
     
     def new
-        @student = Student.find(params[:student_id])
+        @student = find_student
         @schedule = @student.schedules.build
     end
     
@@ -18,10 +18,10 @@ class SchedulesController < ApplicationController
     end
     
     def create        
-        @student = Student.find(params[:student_id])
+        @student = find_student
         @schedule = @student.schedules.build(schedule_params)
         @courses = Course.all
-         if @schedule.save
+        if @schedule.save
             redirect_to student_schedules_path(@student.id)
         else  
             render :new
@@ -29,13 +29,13 @@ class SchedulesController < ApplicationController
     end
 
     def edit
-        @student = Student.find(params[:student_id])
-        @schedule = Schedule.find_by_id(params[:id])
+        @student = find_student
+        @schedule = find_schedule
     end
 
     def update
-        @student = Student.find(params[:student_id])
-        @schedule = Schedule.find_by_id(params[:id])
+        @student = find_student
+        @schedule = find_schedule
         if @schedule.update(schedule_params)
             redirect_to student_schedules_path(@student.id)
         else
@@ -44,8 +44,8 @@ class SchedulesController < ApplicationController
     end
 
     def destroy
-        @student = Student.find(params[:student_id])
-        @schedule = Schedule.find_by_id(params[:id])
+        @student = find_student
+        @schedule = find_schedule
         @schedule.destroy
         redirect_to student_schedules_path(@student.id)
     end

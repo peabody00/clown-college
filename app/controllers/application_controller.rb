@@ -32,5 +32,29 @@ class ApplicationController < ActionController::Base
     def current_teacher
         @current_teacher ||= Teacher.find_by(id: session[:user_id])
     end
+    
+    def find_teacher
+        Teacher.find_by(params[:teacher_id])
+    end
+
+    def find_activity
+        Activity.find_by_id(params[:id])
+    end
+
+    def find_course
+        Course.find_by_id(params[:id])
+    end
+
+    def find_student
+        Student.find_by(params[:student_id])
+    end
+
+    def find_schedule
+        Schedule.find_by_id(params[:id])
+    end
+
+    def find_student_activity
+        StudentActivity.find_by_id(params[:id])
+    end
 
 end
